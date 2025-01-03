@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bares da Cidade Baixa</title>
+    <style>
+        /* Reset básico */
+        body, h1, h2, p {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .main-header {
+            background: linear-gradient(to right, #333, #555);
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+
+        .main-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .main-header p {
+            font-size: 0.9rem;
+        }
+
+        .main-content {
+            margin: 1.5rem 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #bars-list {
+            flex: 1;
+            width: 100%;
+        }
+
+        #bars-list h2 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .bar-card {
+            display: none; /* Template invisível por padrão */
+            background: #292929;
+            border-radius: 8px;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+            margin: 0.8rem 0;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .bar-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .bar-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .bar-info {
+            padding: 0.8rem;
+        }
+
+        .bar-name {
+            font-size: 1rem;
+            color: #ff9800;
+            margin-bottom: 0.5rem;
+        }
+
+        .bar-description {
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .bar-link {
+            color: #ff5722;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .bar-link:hover {
+            text-decoration: underline;
+        }
+
+        .main-footer {
+            background: #111;
+            color: #fff;
+            text-align: center;
+            padding: 0.8rem 0;
+            margin-top: 1.5rem;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bars = [
+                {
+                    name: "Dirty Old Man",
+                    description: "Um ambiente descontraído com música ao vivo e ótimos petiscos.",
+                    image: "https://via.placeholder.com/400x200",
+                    link: "https://www.google.com/maps"
+                },
+                {
+                    name: "Cervejaria Artesanal",
+                    description: "A melhor seleção de cervejas artesanais da região.",
+                    image: "https://via.placeholder.com/400x200",
+                    link: "https://www.google.com/maps"
+                },
+                {
+                    name: "Lounge da Cidade",
+                    description: "Um espaço moderno com coquetéis incríveis e vista panorâmica.",
+                    image: "https://via.placeholder.com/400x200",
+                    link: "https://www.google.com/maps"
+                }
+            ];
+
+            const barsList = document.getElementById('bars-list');
+            const barTemplate = document.getElementById('bar-template');
+
+            bars.forEach(bar => {
+                const barClone = barTemplate.cloneNode(true);
+                barClone.style.display = 'block';
+
+                barClone.querySelector('.bar-image').src = bar.image;
+                barClone.querySelector('.bar-image').alt = `Imagem do ${bar.name}`;
+                barClone.querySelector('.bar-name').textContent = bar.name;
+                barClone.querySelector('.bar-description').textContent = bar.description;
+                barClone.querySelector('.bar-link').href = bar.link;
+
+                barsList.appendChild(barClone);
+            });
+
+            barTemplate.remove(); // Remove o template do DOM após uso
+        });
+    </script>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <h1>Bares da Cidade Baixa</h1>
+            <p>Descubra os melhores bares para visitar e aproveitar a noite!</p>
+        </div>
+    </header>
+
+    <main class="main-content container">
+        <section id="bars-list">
+            <h2>Os Melhores Bares</h2>
+            <div class="bar-card" id="bar-template">
+                <img src="" alt="Imagem do bar" class="bar-image">
+                <div class="bar-info">
+                    <h3 class="bar-name"></h3>
+                    <p class="bar-description"></p>
+                    <a href="#" class="bar-link" target="_blank">Saiba mais</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 Bares da Cidade Baixa. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
